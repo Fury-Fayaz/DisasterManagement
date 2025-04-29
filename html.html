@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Disaster Management: Emergency Routing</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f4f8;
+      color: #333;
+    }
+
+    header {
+      background-color: #1e3a5f;
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease;
+    }
+
+    .container:hover {
+      transform: scale(1.01);
+    }
+
+    .input-container {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    h3, h4 {
+      margin: 10px 0;
+      color: #1e3a5f;
+    }
+
+    input[type="text"] {
+      margin: 10px;
+      padding: 10px;
+      width: 250px;
+      font-size: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      outline: none;
+      transition: border 0.3s;
+    }
+
+    input[type="text"]:focus {
+      border-color: #1e3a5f;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      background-color: #1e3a5f;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #16314a;
+    }
+
+    #map {
+      height: 500px;
+      margin-top: 30px;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .distance-info {
+      text-align: center;
+      margin-top: 25px;
+      font-size: 18px;
+      color: #444;
+    }
+
+    #path-info {
+      font-weight: bold;
+      color: #1e3a5f;
+    }
+
+    @media screen and (max-width: 600px) {
+      input[type="text"] {
+        width: 90%;
+      }
+
+      .container {
+        margin: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🚨 Disaster Management: Emergency Routing</h1>
+  </header>
+
+  <div class="container">
+    <div class="input-container">
+      <h3>Enter Disaster Zone and Nearby Locations</h3>
+      <input id="disaster-name" type="text" placeholder="Disaster Area Name" />
+      <h4>Nearby Locations</h4>
+      <input id="loc-name" type="text" placeholder="Location Name" />
+      <br />
+      <button onclick="addLocation()">➕ Add Location</button>
+      <button onclick="calculatePath()">📍 Calculate Shortest Path</button>
+    </div>
+
+    <div id="map"></div>
+
+    <div class="distance-info" id="distance-info">
+      <p>Click <b>"Add Location"</b> to input locations and <b>"Calculate Shortest Path"</b> to view the route.</p>
+      <p id="path-info">Shortest Path: N/A</p>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="script.js"></script>
+
+</body>
+</html>
